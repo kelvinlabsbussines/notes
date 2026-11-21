@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Notes</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- MAIN NOTES PAGE -->
+        <main id="notesPage" class="page active">
+
+            <!-- Header -->
+            <header class="header">
+                <div class="header-top">
+                    <div>
+                        <span class="header-label">YOUR PERSONAL SPACE</span>
+                        <h1>Notes<span class="title-dot">.</span></h1>
+                    </div>
+
+                    <button class="icon-button" id="settingsButton" aria-label="Settings">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                </div>
+
+                <p class="header-description">
+                    Keep your thoughts in one place.
+                </p>
+            </header>
+
+            <!-- Search -->
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search your notes..."
+                    autocomplete="off"
+                >
+
+                <button id="clearSearch" class="clear-search hidden" aria-label="Clear search">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Note Filter -->
+            <div class="filter-container">
+                <button class="filter-button active" data-filter="all">
+                    All Notes
+                </button>
+
+                <button class="filter-button" data-filter="pinned">
+                    <i class="fa-solid fa-thumbtack"></i>
+                    Pinned
+                </button>
+            </div>
+
+            <!-- Notes Header -->
+            <div class="notes-heading">
+                <h2 id="notesHeading">Your Notes</h2>
+                <span id="notesCount">0 notes</span>
+            </div>
+
+            <!-- Notes List -->
+            <section id="notesList" class="notes-list">
+
+                <!-- Notes will be rendered by JavaScript -->
+
+            </section>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state hidden">
+                <div class="empty-icon">
+                    <i class="fa-regular fa-note-sticky"></i>
+                </div>
+
+                <h3>No notes yet</h3>
+
+                <p>
+                    Your thoughts, ideas and plans<br>
+                    start here.
+                </p>
+
+                <button id="emptyCreateButton" class="empty-create-button">
+                    <i class="fa-solid fa-plus"></i>
+                    Create your first note
+                </button>
+            </div>
+
+            <!-- Floating Add Button -->
+            <button id="addNoteButton" class="floating-button" aria-label="Add note">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+        </main>
+
+
+        <!-- NOTE EDITOR PAGE -->
+        <main id="editorPage" class="page editor-page">
+
+            <!-- Editor Header -->
+            <header class="editor-header">
+
+                <button id="backButton" class="icon-button" aria-label="Back">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+                <div class="save-status" id="saveStatus">
+                    <span class="save-dot"></span>
+                    <span>Saved</span>
+                </div>
+
+                <button id="pinButton" class="editor-pin-button" aria-label="Pin note">
+                    <i class="fa-solid fa-thumbtack"></i>
+                </button>
+
+            </header>
+
+            <!-- Editor Content -->
+            <section class="editor-content">
+
+                <input
+                    type="text"
+                    id="noteTitle"
+                    class="note-title-input"
+                    placeholder="Title"
+                    maxlength="120"
+                >
+
+                <textarea
+                    id="noteContent"
+                    class="note-content-input"
+                    placeholder="Start writing..."
+                ></textarea>
+
+            </section>
+
+            <!-- Editor Footer -->
+            <footer class="editor-footer">
+
+                <div class="category-wrapper">
+                    <i class="fa-solid fa-tag"></i>
+
+                    <select id="noteCategory">
+                        <option value="Personal">Personal</option>
+                        <option value="Ideas">Ideas</option>
+                        <option value="Work">Work</option>
+                        <option value="Other">Other</option>
+                    </select>
+
+                    <i class="fa-solid fa-chevron-down category-arrow"></i>
+                </div>
+
+                <div class="editor-info">
+                    <span id="wordCount">0 words</span>
+                    <span id="lastUpdated">New note</span>
+                </div>
+
+            </footer>
+
+        </main>
+
+
+        <!-- SETTINGS PAGE -->
+        <main id="settingsPage" class="page settings-page">
+
+            <header class="settings-header">
+                <button id="settingsBackButton" class="icon-button" aria-label="Back">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+                <h2>Settings</h2>
+            </header>
+
+            <section class="settings-content">
+
+                <div class="settings-profile">
+                    <div class="settings-logo">
+                        <i class="fa-regular fa-note-sticky"></i>
+                    </div>
+
+                    <h3>Notes.</h3>
+                    <p>Your personal space for everything.</p>
+                </div>
+
+                <div class="settings-group">
+
+                    <span class="settings-group-label">GENERAL</span>
+
+                    <div class="settings-item">
+                        <div class="settings-item-icon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+
+                        <div class="settings-item-text">
+                            <h4>Database</h4>
+                            <p id="connectionStatus">Connecting...</p>
+                        </div>
+
+                        <span class="connection-indicator" id="connectionIndicator"></span>
+                    </div>
+
+                </div>
+
+                <div class="settings-group">
+
+                    <span class="settings-group-label">ABOUT</span>
+
+                    <div class="settings-item">
+                        <div class="settings-item-icon">
+                            <i class="fa-regular fa-circle-info"></i>
+                        </div>
+
+                        <div class="settings-item-text">
+                            <h4>About Notes</h4>
+                            <p>Simple notes for everyday life.</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-item">
+                        <div class="settings-item-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <div class="settings-item-text">
+                            <h4>Version</h4>
+                            <p>1.0.0</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-navigation" id="bottomNavigation">
+
+            <button class="nav-item active" data-page="notes">
+                <i class="fa-solid fa-note-sticky"></i>
+                <span>Notes</span>
+            </button>
+
+            <button class="nav-item" data-page="settings">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="script.js"></script>
+
+</body>
+</html>
